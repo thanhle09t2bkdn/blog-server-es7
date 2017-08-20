@@ -1,0 +1,36 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "blog-development",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+
+  "staging": {
+    "username": "username",
+    "password": "your password",
+    "database": "blog-staging",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+
+  "production": {
+    "username": "username",
+    "password": "your password",
+    "database": "blog",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "username",
+    "password": "your password",
+    "database": "blog-test",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  }
+}
