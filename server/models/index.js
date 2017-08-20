@@ -1,14 +1,13 @@
 'use strict';
 
-import FS from 'fs';
-import Path from 'path';
-import Sequelize from 'sequelize';
-import DBConfig from '../config/db-config.json';
+const FS = require('fs');
+const Path = require('path');
+const Sequelize = require('sequelize');
+const DB = require('../config/db-config.json');
 
 const basename = Path.basename(module.filename);
 const env = process.env.NODE_ENV || 'development';
-const connection = DBConfig[env];
-console.log(connection);
+const connection = DB[env];
 let db = {};
 let sequelize = new Sequelize(connection.database, connection.username, connection.password, connection);
 FS.readdirSync(__dirname).filter(function (file) {

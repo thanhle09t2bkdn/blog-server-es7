@@ -1,9 +1,5 @@
-/**
- * isAuth
- *
- */
 import JWT from 'jsonwebtoken';
-import Model from '../models';
+import Model from '../models/index1';
 import FS from 'fs';
 import Path from 'path';
 import HTTPStatus from 'http-status';

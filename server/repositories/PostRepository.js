@@ -1,4 +1,4 @@
-import Model from '../models';
+import Model from '../models/index1';
 
 let Post = Model.Post;
 
