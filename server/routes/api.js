@@ -15,5 +15,6 @@ router.get('/health-check', (req, res) =>
 // // mount auth routes at /auth
 // router.use('/auth', authRoutes);
 router.get('/', (req, res) => res.json(Response.returnSuccess('Welcome to the Patient App')));
+router.route('/post/index').get(PostApiController.index);
 
 export default router;

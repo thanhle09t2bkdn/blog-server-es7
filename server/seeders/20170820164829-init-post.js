@@ -1,30 +1,29 @@
-'use strict';
-
 const User = require('../models').User;
+const Post = require('../models').Post;
 const Faker = require('faker');
 
 module.exports = {
-    up: (queryInterface, Sequelize) => {
-        console.log("thanh");
-        User.findOne({
-                where: {'role' : 'NORMAL_USER'},
-        }).then(function(user) {
-            console.log("thanh le");
-            return Post
-                .create({
-                    title: "Faker.name.title()",
-                    content: "Faker.lorem.paragraph()",
-                    userId: user.id
-                })
-                .then(post => {
-                    return true;
-                })
-                .catch(error => {
+    up: function(queryInterface, Sequelize) {
+            return User.findOne({
+                        where: {'role' : 'NORMAL_USER'},
+                    }).then(function(user) {
+                        Post
+                            .create({
+                                title: Faker.name.title(),
+                                content: Faker.lorem.paragraph(),
+                                userId: user.id
+                            })
+                            .then(function (post) {
+                                return true;
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                                return false;
+                            });
+                }).catch(function(error) {
                     console.log(error);
                     return false;
                 });
-        });
-
     },
 
     down: (queryInterface, Sequelize) => {

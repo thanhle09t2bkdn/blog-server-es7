@@ -4,6 +4,7 @@ import Path from 'path';
 import Morgan from 'morgan';
 import Cors from 'cors';
 import { Api, Web } from '../routes';
+import { Post } from '../models';
 
 const app = Express();
 
