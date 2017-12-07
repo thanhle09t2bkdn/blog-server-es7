@@ -2,47 +2,27 @@ import Model from '../models';
 export default class BaseRepository {
 
     constructor(className) {
-        this._model = Model[className];
+        this.model = Model[className];
     }
 
-    async getAll() {
-        try {
-            return await this._model.findAll();
-        } catch (e) {
-            throw new Error(e);
-        }
+    async find(options) {
+        return await this.model.findAll(options);
+    }
+
+    async findOne(options) {
+        return await this.model.findOne(options);
     }
 
     async create(data) {
-        try {
-            return await this._model.create(data);
-        } catch (e) {
-            throw new Error(e);
-        }
+        return await this.model.create(data);
     }
 
-    async update(id, data) {
-        try {
-            return await this._model.update(data, {where: {id}});
-        } catch (e) {
-            throw new Error(e);
-        }
+    async update(data, options) {
+        return await this.model.update(data, options);
     }
 
-    async get(id) {
-        try {
-            return await this._model.findById(id);
-        } catch (e) {
-            throw new Error(e);
-        }
-    }
-
-    async remove(id) {
-        try {
-            return await this._model.destroy({where: {id}});
-        } catch (e) {
-            throw new Error(e);
-        }
+    async delete(options) {
+        return await this.model.destroy(options);
     }
 
 }

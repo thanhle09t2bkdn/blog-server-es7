@@ -3,7 +3,7 @@ import BodyParser from 'body-parser';
 import Path from 'path';
 import Morgan from 'morgan';
 import Cors from 'cors';
-import { Api, Web } from '../routes';
+import { Api, Web } from '../routes/web/index';
 import { Post } from '../models';
 
 const app = Express();

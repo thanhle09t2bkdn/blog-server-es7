@@ -28,9 +28,10 @@ module.exports = (sequelize, DataTypes) => {
 		},
 	}, {
 		classMethods: {
-			associate: (models) => {
-				// associations can be defined here
-			},
+            associate(models) {
+                // User.belongsTo(models.Post, { foreignKey:'userId', foreignKeyConstraint:true,  as: 'post',} );
+                // User.hasOne(models.Post);
+            },
 			generateHash(password) {
 				return Bcrypt.hashSync(password, Bcrypt.genSaltSync(8), null);
 			},

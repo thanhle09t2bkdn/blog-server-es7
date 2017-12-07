@@ -1,6 +1,3 @@
-/**
- * Created by joker on 05/08/2017.
- */
 import JWT from 'jsonwebtoken';
 import Model from '../models';
 import FS from 'fs';

@@ -15,7 +15,8 @@ module.exports = {
         type: Sequelize.TEXT
       },
       userId: {
-          type: Sequelize.UUID
+            type: Sequelize.UUID,
+            references: { model: 'Users', key: 'id' }
       },
       createdAt: {
         allowNull: false,
