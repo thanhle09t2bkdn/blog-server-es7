@@ -3,13 +3,15 @@
 const FS = require('fs');
 const Path = require('path');
 const Sequelize = require('sequelize');
-const DB = require('../config/db-config.json');
+const {dbConfig, env} = require('../config');
 
 const basename = Path.basename(module.filename);
-const env = process.env.NODE_ENV || 'development';
-const connection = DB[env];
+
 let db = {};
-let sequelize = new Sequelize(connection.database, connection.username, connection.password, connection);
+if (env !== 'development') {
+    dbConfig.logging = false;
+}
+let sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
 FS.readdirSync(__dirname).filter(function (file) {
     return (file.indexOf('.') !== 0) && (file !== basename) &&
         (file.slice(-3) === '.js');
@@ -24,5 +26,5 @@ Object.keys(db).forEach((modelName) => {
     }
 });
 db.sequelize = sequelize;
-
+db.Op = Sequelize.Op;
 module.exports = db;

@@ -112,4 +112,4 @@ fabric.properties
 yarn.lock
 yarn-error.log
 
-/server/config/db-config.json
+/server/config/*.json

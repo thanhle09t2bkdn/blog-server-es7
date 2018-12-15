@@ -5,7 +5,8 @@
     "database": "blog-development",
     "host": "127.0.0.1",
     "port": 5432,
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": false
   },
 
   "staging": {
@@ -14,16 +15,18 @@
     "database": "blog-staging",
     "host": "127.0.0.1",
     "port": 5432,
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": false
   },
 
   "production": {
     "username": "username",
     "password": "your password",
-    "database": "blog",
+    "database": "blog-product",
     "host": "127.0.0.1",
     "port": 5432,
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": false
   },
   "test": {
     "username": "username",
@@ -31,6 +34,7 @@
     "database": "blog-test",
     "host": "127.0.0.1",
     "port": 5432,
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "operatorsAliases": false
   }
 }

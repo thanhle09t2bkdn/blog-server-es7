@@ -1,13 +1,15 @@
 import JWT from 'jsonwebtoken';
-import Model from '../models';
+import {User} from '../models';
 import FS from 'fs';
 import Path from 'path';
 import Config from '../config';
+import BaseRepository from './BaseRepository';
 
-const User = Model.User;
 
-export default class AuthRepository {
-
+export default class extends BaseRepository  {
+    constructor() {
+        super(User);
+    }
     async authenticate(data) {
         let {username, password} = data;
         try {

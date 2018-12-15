@@ -1,8 +1,7 @@
-import Model from '../models';
 export default class BaseRepository {
 
-    constructor(className) {
-        this.model = Model[className];
+    constructor(model) {
+        this.model = model;
     }
 
     async find(options) {

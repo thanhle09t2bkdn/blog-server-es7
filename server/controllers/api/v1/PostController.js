@@ -1,7 +1,7 @@
 import HTTPStatus from 'http-status';
-import Response from '../../helpers/Response';
-import { PostRepository } from '../../repositories';
-import models from '../../models';
+import Response from '../../../helpers/Response';
+import { PostRepository } from '../../../repositories/index';
+import models from '../../../models/index';
 
 let postRepository = new PostRepository();
 
