@@ -1,12 +1,12 @@
 import Bcrypt from 'bcrypt';
 
 const Roles = {
-	ADMN: 'ADMIN',
-	USER: 'USER',
-}
+    ADMN: 'ADMIN',
+    USER: 'USER',
+};
 module.exports = (Sequelize, DataTypes) => {
 
-	const User = Sequelize.define('User', {
+    const User = Sequelize.define('User', {
         id: {
             allowNull: false,
             primaryKey: true,
@@ -48,7 +48,7 @@ module.exports = (Sequelize, DataTypes) => {
         deletedAt: {
             type: DataTypes.DATE,
         }
-	}, {});
+    }, {});
     User.associate = (models) => {
         User.hasMany(models.Post, {
             foreignKey: 'userId',
@@ -75,7 +75,7 @@ module.exports = (Sequelize, DataTypes) => {
         }
         return user;
     });
-	User.Roles = Roles;
-	return User;
+    User.Roles = Roles;
+    return User;
 
 };

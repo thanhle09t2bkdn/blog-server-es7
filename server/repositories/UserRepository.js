@@ -6,11 +6,11 @@ import Config from '../config';
 import BaseRepository from './BaseRepository';
 
 
-export default class extends BaseRepository  {
+export default class UserRepository extends BaseRepository  {
     constructor() {
         super(User);
     }
-    async authenticate(data) {
+    /*async authenticate(data) {
         let {username, password} = data;
         try {
             let user = await User.findOne({
@@ -44,6 +44,6 @@ export default class extends BaseRepository  {
         } catch (e) {
             throw new Error(e);
         }
-    }
+    }*/
 
 }
