@@ -39,12 +39,12 @@ module.exports = {
 				defaultValue: 'USER',
 			},
 			createdAt: {
-				allowNull: false,
 				type: Sequelize.DATE,
+				defautValue: Sequelize.NOW
 			},
 			updatedAt: {
-				allowNull: false,
 				type: Sequelize.DATE,
+                defautValue: Sequelize.NOW
 			},
             deletedAt: {
                 type: Sequelize.DATE,
