@@ -10,9 +10,9 @@ import Faker from 'faker';
 module.exports = {
     up: async (queryInterface, Sequelize) => {
         try {
+            const pathUploads = Path.join(__dirname, '..', 'public', 'uploads');
             for (let i = 0; i < 10; i++) {
                 const imageName = `${Uuid.v4()}.jpg`;
-                const pathUploads = Path.join(__dirname, '..', 'public', 'uploads');
                 await Download.file('https://picsum.photos/300/300', pathUploads, imageName);
                 await userRepository
                     .create({
