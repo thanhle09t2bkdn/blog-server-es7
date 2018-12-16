@@ -8,11 +8,6 @@ module.exports = {
 				type: Sequelize.UUID,
 				defaultValue: Sequelize.UUIDV4,
 			},
-			username: {
-				type: Sequelize.STRING,
-				unique: true,
-				allowNull: false,
-			},
 			email: {
 				type: Sequelize.STRING,
 				unique: true,
@@ -24,7 +19,6 @@ module.exports = {
             },
             lastName: {
                 type: Sequelize.STRING,
-                unique: true,
                 allowNull: false,
             },
             avatar: {

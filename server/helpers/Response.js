@@ -16,7 +16,7 @@ export default class Response {
             .send();
     }
 
-    static error(res, e, code) {
+    static error(res, e, code = HTTPStatus.BAD_REQUEST) {
         let error = e;
         if (typeof e === 'string') {
             error = new Error(e);

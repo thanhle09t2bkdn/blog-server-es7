@@ -1,6 +1,6 @@
 'use strict';
 
-const FS = require('fs');
+const FS = require('fs-extra');
 const Path = require('path');
 const Sequelize = require('sequelize');
 const {dbConfig, env} = require('../config');

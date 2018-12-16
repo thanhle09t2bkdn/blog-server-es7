@@ -1,68 +1,81 @@
-const Bcrypt = require('bcrypt');
+import Bcrypt from 'bcrypt';
 
-module.exports = (sequelize, DataTypes) => {
+const Roles = {
+	ADMN: 'ADMIN',
+	USER: 'USER',
+}
+module.exports = (Sequelize, DataTypes) => {
 
-	let User = sequelize.define('User', {
-		id: {
-			type: DataTypes.UUID,
-			defaultValue: DataTypes.UUIDV1,
-			primaryKey: true,
-		},
-		username: {
-			type: DataTypes.STRING(50),
-			allowNull: false,
-			unique: true,
-		},
-		email: {
-			type: DataTypes.STRING(50),
-			allowNull: false,
-			unique: true,
-		},
-		password: {
-			type: DataTypes.STRING(255),
-			allowNull: false,
-		},
-		role: {
-			type: DataTypes.ENUM('ADMIN', 'NORMAL_USER'),
-			defaultValue: 'NORMAL_USER',
-		},
-	}, {
-		classMethods: {
-            associate(models) {
-                // User.belongsTo(models.Post, { foreignKey:'userId', foreignKeyConstraint:true,  as: 'post',} );
-                // User.hasOne(models.Post);
-            },
-			generateHash(password) {
-				return Bcrypt.hashSync(password, Bcrypt.genSaltSync(8), null);
-			},
-		},
-		instanceMethods: {
-			validatePassword: function (password) {
-                if (Bcrypt.compareSync(password, this.password))
-                    return true;
-                else
-                    return false;
-			},
-			toJSON: function () {
-				let values = Object.assign({}, this.get());
-				delete values.password;
-				return values;
-			},
-		},
-		hooks: {
-			beforeCreate: function (user, options) {
-				if (user.changed('password')) {
-					user.password = this.generateHash(user.password);
-				}
-			},
-			beforeUpdate: function (user, options) {
-				if (user.changed('password')) {
-					user.password = this.generateHash(user.password);
-				}
-			},
-		},
-		privateColumns: ['password'],
-	});
+	const User = Sequelize.define('User', {
+        id: {
+            allowNull: false,
+            primaryKey: true,
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+        },
+        email: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false,
+        },
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        avatar: {
+            type: DataTypes.STRING,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        role: {
+            type: DataTypes.ENUM(Object.values(Roles)),
+            defaultValue: Roles.USER,
+        },
+        createdAt: {
+            defaultValue: DataTypes.NOW,
+            type: DataTypes.DATE,
+        },
+        updatedAt: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        },
+        deletedAt: {
+            type: DataTypes.DATE,
+        }
+	}, {});
+    User.associate = (models) => {
+        User.hasMany(models.Post, {
+            foreignKey: 'userId',
+            as: 'posts'
+        });
+    };
+
+    User.generateHash = async (password) => {
+        return await Bcrypt.hash(password, 8);
+    };
+    User.prototype.comparePassword = async (password) => {
+        return await Bcrypt.compare(password, this.dataValues.password);
+    };
+
+    User.beforeCreate(async (user, options) => {
+        if (user.changed('password')) {
+            user.password = await User.generateHash(user.password);
+        }
+        return user;
+    });
+    User.beforeUpdate(async (user, options) => {
+        if (user.changed('password')) {
+            user.password = await User.generateHash(user.password);
+        }
+        return user;
+    });
+	User.Roles = Roles;
 	return User;
 
 };

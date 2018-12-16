@@ -1,3 +1,4 @@
-module.exports = {
-    
+
+export default class UserController {
+
 }

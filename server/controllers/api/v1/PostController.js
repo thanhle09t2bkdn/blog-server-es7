@@ -5,7 +5,7 @@ import models from '../../../models/index';
 
 let postRepository = new PostRepository();
 
-class PostController {
+export default class PostController {
 
     index = async (req, res) => {
         try {
@@ -76,5 +76,3 @@ class PostController {
     }
 
 }
-
-export default new PostController();
