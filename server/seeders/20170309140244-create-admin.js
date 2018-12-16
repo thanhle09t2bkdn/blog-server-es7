@@ -30,7 +30,7 @@ module.exports = {
 
     down: async (queryInterface, Sequelize) => {
         try {
-            await userRepository.delete({where: {'email': 'admin@gmail.com'}});
+            await userRepository.destroy({where: {'email': 'admin@gmail.com'}});
             return true;
         } catch (error) {
             console.log(error);

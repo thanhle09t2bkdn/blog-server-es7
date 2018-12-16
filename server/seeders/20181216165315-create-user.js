@@ -34,7 +34,7 @@ module.exports = {
 
     down: async (queryInterface, Sequelize) => {
         try {
-            await userRepository.delete({where: {'role': User.Roles.USER}});
+            await userRepository.destroy({where: {'role': User.Roles.USER}});
             return true;
         } catch (error) {
             console.log(error);

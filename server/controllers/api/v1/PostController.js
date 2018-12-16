@@ -1,9 +1,7 @@
 import HTTPStatus from 'http-status';
 import Response from '../../../helpers/Response';
-import { PostRepository } from '../../../repositories/index';
-import models from '../../../models/index';
+import { postRepository } from '../../../repositories';
 
-let postRepository = new PostRepository();
 
 export default class PostController {
 
