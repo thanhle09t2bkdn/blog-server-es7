@@ -13,7 +13,6 @@ module.exports = {
         try {
             const pathUploads = Path.join(__dirname, '..', 'public', 'uploads');
             const categories = await categoryRepository.findAll({});
-            console.log(categories[Random.getInt(categories.length - 1)].id);
             const users = await userRepository.findAll({
                 where: {
                     role: User.Roles.USER
