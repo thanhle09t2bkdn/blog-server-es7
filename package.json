@@ -21,6 +21,7 @@
     "express": "^4.15.4",
     "express-fileupload": "^1.0.0",
     "express-jwt": "^5.3.0",
+    "express-validator": "^5.3.0",
     "fs-extra": "^7.0.1",
     "http-status": "^1.0.1",
     "morgan": "^1.8.2",
@@ -39,6 +40,6 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "pm2:start": "pm2 start ./bin/www --name blog-server-es7",
-    "pm2:stop": "pm2 stop"
+    "pm2:stop": "pm2 stop ./bin/www"
   }
 }

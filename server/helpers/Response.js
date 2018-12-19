@@ -3,17 +3,22 @@ import {env} from '../config/index';
 
 export default class Response {
 
-    static success(res, data = null) {
-        if (data) {
+    static success(res, data, pageInfo = null) {
+        if (pageInfo) {
             return res
                 .status(HTTPStatus.OK)
-                .send({
+                .json({
                     data: data,
+                    pageInfo
+                });
+        } else {
+            return res
+                .status(HTTPStatus.OK)
+                .json({
+                    data: data,
+
                 });
         }
-        return res
-            .status(HTTPStatus.OK)
-            .send();
     }
 
     static error(res, e, code = HTTPStatus.BAD_REQUEST) {
@@ -26,10 +31,11 @@ export default class Response {
         }
         return res
             .status(code)
-            .send({
+            .json({
                 error: {
                     message: error.message,
                     code: code,
+                    statusCode: error.statusCode
                 },
             });
     }

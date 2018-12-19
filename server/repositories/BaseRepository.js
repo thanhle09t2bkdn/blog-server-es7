@@ -22,6 +22,10 @@ export default class BaseRepository {
         return await this.model.findOne(options);
     }
 
+    async findById(id) {
+        return await this.model.findById(id);
+    }
+
     async create(data) {
         return await this.model.create(data);
     }
@@ -32,6 +36,13 @@ export default class BaseRepository {
 
     async destroy(options) {
         return await this.model.destroy(options);
+    }
+
+    async findAndCountAll(options = {}) {
+        return {
+            count: await this.model.count({where: options.where, paranoid: options.paranoid}),
+            rows: await this.findAll(options)
+        };
     }
 
 }
