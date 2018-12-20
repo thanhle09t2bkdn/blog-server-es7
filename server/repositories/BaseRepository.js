@@ -22,8 +22,8 @@ export default class BaseRepository {
         return await this.model.findOne(options);
     }
 
-    async findById(id) {
-        return await this.model.findById(id);
+    async findByPk(id) {
+        return await this.model.findByPk(id);
     }
 
     async create(data) {

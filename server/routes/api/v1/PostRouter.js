@@ -1,4 +1,4 @@
-import {postController} from '../../../controllers/api/v1/index';
+import {postController} from '../../../controllers/api/v1';
 import { Router } from 'express';
 
 const router = Router(); // eslint-disable-line new-cap

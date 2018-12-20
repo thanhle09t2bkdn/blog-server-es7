@@ -29,7 +29,7 @@ export default class CategoryController {
             const data = req.query;
             const {id} = data;
 
-            const category = await categoryRepository.findById(id);
+            const category = await categoryRepository.findByPk(id);
             return Response.success(res, category);
 
         } catch (e) {
