@@ -34,8 +34,7 @@ export default class Response {
             .json({
                 error: {
                     message: error.message,
-                    code: code,
-                    statusCode: error.statusCode
+                    statusCode: code
                 },
             });
     }
