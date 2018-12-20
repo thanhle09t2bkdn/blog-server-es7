@@ -1,26 +1,13 @@
-export default class AuthValidation {
+import Joi from 'joi';
+import BaseValidation from "./BaseValidation";
 
-    static loginForm = {
-        email: {
-            // The location of the field, can be one or more of body, cookies, headers, params or query.
-            // If omitted, all request locations will be checked
-            in: ['params', 'query'],
-            errorMessage: 'ID is wrong',
-            isInt: true,
-            // Sanitizers can go here as well
-            toInt: true
+export default class AuthValidation extends BaseValidation{
+
+    loginForm = {
+        body: {
+            email: Joi.string().email({ minDomainAtoms: 2 }).required().max(255),
+            password: Joi.string().min(7).max(50),
         },
-        password: {
-            isLength: {
-                errorMessage: 'Password should be at least 7 chars long',
-                // Multiple options would be expressed as an array
-                options: {min: 7}
-            }
-        }
     };
-    static index = (req, res, next) => {
-        console.log(req.body);
-        next();
-    }
 
 }

@@ -7,11 +7,11 @@ const {dbConfig, env} = require('../config');
 
 const basename = Path.basename(module.filename);
 
-let db = {};
+const db = {};
 if (env !== 'development') {
     dbConfig.logging = false;
 }
-let sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
+const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
 FS.readdirSync(__dirname).filter(function (file) {
     return (file.indexOf('.') !== 0) && (file !== basename) &&
         (file.slice(-3) === '.js');
