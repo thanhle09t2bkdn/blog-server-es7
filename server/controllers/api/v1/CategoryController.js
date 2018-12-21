@@ -35,5 +35,5 @@ export default class CategoryController {
         } catch (e) {
             return Response.error(res, e, HTTPStatus.BAD_REQUEST);
         }
-    }
+    };
 }

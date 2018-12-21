@@ -1,7 +1,7 @@
-import IsAuth from './IsAuth';
-import IsAdmin from './IsAdmin';
+import Auth from './Auth';
+import Error from './Error';
 
 module.exports = {
-    IsAuth,
-    IsAdmin,
+    auth: new Auth(),
+    error: new Error(),
 };

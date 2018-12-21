@@ -1,0 +1,32 @@
+{
+  "development": {
+    "APP_NAME": "Todo",
+    "APP_VERSION": "1",
+    "APP_DESCRIPTION": "",
+    "APP_HOST": "localhost:5555",
+    "SWAGGER_URL": "http://localhost:5555/swagger.json"
+  },
+
+  "staging": {
+    "APP_NAME": "Todo",
+    "APP_VERSION": "1",
+    "APP_DESCRIPTION": "",
+    "APP_HOST": "localhost:5555",
+    "SWAGGER_URL": "http://localhost:5555/swagger.json"
+  },
+
+  "production": {
+    "APP_NAME": "Todo",
+    "APP_VERSION": "1",
+    "APP_DESCRIPTION": "",
+    "APP_HOST": "localhost:5555",
+    "SWAGGER_URL": "http://localhost:5555/swagger.json"
+  },
+  "test": {
+    "APP_NAME": "Todo",
+    "APP_VERSION": "1",
+    "APP_DESCRIPTION": "",
+    "APP_HOST": "localhost:5555",
+    "SWAGGER_URL": "http://localhost:5555/swagger.json"
+  }
+}
