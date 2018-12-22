@@ -1,7 +1,7 @@
-import JWT from 'jsonwebtoken';
 import {User} from '../models';
 import {JWT_SECRET, JWT_EXPIRATION_MINUTES} from '../config';
 import BaseRepository from './BaseRepository';
+import JWT from '../helpers/JWT';
 
 
 export default class UserRepository extends BaseRepository {
@@ -20,7 +20,7 @@ export default class UserRepository extends BaseRepository {
             if (!user) {
                 throw new Error('Email not found');
             } else if (await user.comparePassword(password)) {
-                const token = JWT.sign(
+                const token = await JWT.sign(
                     {
                         id: user.id,
                         role: user.role

@@ -1,41 +1,63 @@
 import ApiError from '../helpers/ApiError';
 import HttpStatus from 'http-status';
-import {User} from '../models';
+import {userRepository} from '../repositories';
+import JWT from '../helpers/JWT';
+import {JWT_SECRET} from '../config';
 
 export default class Auth {
-    handleJWT = (req, res, next, roles) => async (err, user, info) => {
-        const error = err || info;
-        const logIn = Promise.promisify(req.logIn);
-        const apiError = new ApiError({
-            message: error ? error.message : 'Unauthorized',
-            status: HttpStatus.UNAUTHORIZED,
-            stack: error ? error.stack : undefined,
-        });
-
-        try {
-            if (error || !user) throw error;
-            await logIn(user, {session: false});
-        } catch (e) {
-            return next(apiError);
-        }
-
-        if (roles === LOGGED_USER) {
-            if (user.role !== User.Roles.ADMN && req.params.userId !== user.id) {
-                apiError.status = HttpStatus.FORBIDDEN;
-                apiError.message = 'Forbidden';
-                return next(apiError);
+    mustLogin = async (req, res, next) => {
+        const token = JWT.getToken(req);
+        if (!token) {
+            console.log(token);
+            if (!next) {
+                throw new ApiError({
+                    message: 'AUTHORIZATION FAILED',
+                    status: HttpStatus.UNAUTHORIZED,
+                });
             }
-        } else if (!roles.includes(user.role)) {
-            apiError.status = HttpStatus.FORBIDDEN;
-            apiError.message = 'Forbidden';
-            return next(apiError);
-        } else if (err || !user) {
-            return next(apiError);
+            return next(new ApiError({
+                message: 'AUTHORIZATION FAILED',
+                status: HttpStatus.UNAUTHORIZED,
+            }));
+        }
+        let jwtPayload = null;
+        try {
+            jwtPayload = await JWT.verify(token, JWT_SECRET);
+        } catch (error) {
+            if (!next) {
+                throw error;
+            }
+            return next(new ApiError({
+                message: error ? error.message : 'Unauthorized',
+                status: HttpStatus.UNAUTHORIZED,
+            }));
         }
 
+        let user = null;
+        try {
+            user = await this.verifyUser(jwtPayload);
+        } catch (error) {
+            if (!next) {
+                throw error;
+            }
+            return next(new ApiError({
+                message: error ? error.message : 'Unauthorized',
+                status: HttpStatus.UNAUTHORIZED,
+            }));
+        }
         req.user = user;
 
-        return next();
+        if (next) {
+            return next();
+        }
+    };
+
+    verifyUser = async (data) => {
+        const user = await userRepository.findByPk(data.id);
+        if (!user) {
+            throw new Error('USER NOT FOUND');
+        }
+        return user;
     };
 
 }
