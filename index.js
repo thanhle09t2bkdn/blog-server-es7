@@ -19,7 +19,7 @@ app.use(Compress());
 app.use(Express.static(Path.resolve(__dirname, 'server', 'public'), {maxAge: 31557600000}));
 app.set('view engine', 'ejs');
 app.set('views', Path.join(__dirname, 'server', 'views'));
-
+app.disable('x-powered-by');
 if (env === 'development') {
     app.use(Morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 }
