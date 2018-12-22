@@ -1,0 +1,125 @@
+/todos:
+  get:
+    summary: List todos
+    tags:
+      - Todos
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - in: query
+        name: page
+      - in: query
+        name: limit
+      - in: query
+        name: status
+        type: string
+        enum: [ "done", "un_done", "remove"]
+
+
+    responses:
+      '200':
+        description: OK
+      '400':
+        description: Interal error.
+
+  post:
+    summary: Create todo
+    tags:
+      - Todos
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - in: formData
+        name: name
+        type: string
+        required: true
+      - in: formData
+        name: status
+        type: string
+        enum: [ "done", "un_done", "remove"]
+
+    responses:
+      '200':
+        description: OK
+      '400':
+        description: Interal error.
+
+/todos/{id}:
+  get:
+    summary: Get one todo
+    tags:
+      - Todos
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+
+    responses:
+      '200':
+        description: OK
+      '400':
+        description: Interal error.
+
+  put:
+    summary: Update todo
+    tags:
+      - Todos
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+      - in: formData
+        name: name
+        type: string
+        required: true
+      - in: formData
+        name: status
+        type: string
+        enum: [ "done", "un_done", "remove"]
+
+    responses:
+      '200':
+        description: OK
+      '400':
+        description: Interal error.
+
+  delete:
+    summary: Delete todo
+    tags:
+      - Todos
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+
+    parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+
+    responses:
+      '200':
+        description: OK
+      '400':
+        description: Interal error.

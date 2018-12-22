@@ -8,7 +8,6 @@ export default class Auth {
     mustLogin = async (req, res, next) => {
         const token = JWT.getToken(req);
         if (!token) {
-            console.log(token);
             if (!next) {
                 throw new ApiError({
                     message: 'AUTHORIZATION FAILED',
