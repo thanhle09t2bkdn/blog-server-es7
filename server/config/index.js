@@ -8,7 +8,8 @@ const env = process.env.NODE_ENV;
 module.exports = {
 	env,
 	port: process.env.PORT,
-	expireTime: process.env.EXPIRE_TIME,
+    JWT_SECRET: process.env.JWT_SECRET,
+    JWT_EXPIRATION_MINUTES: process.env.JWT_EXPIRATION_MINUTES,
 	dbConfig: DBConfig[process.env.NODE_ENV],
     swagger: Swagger[env],
 

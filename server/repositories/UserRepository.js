@@ -1,49 +1,42 @@
 import JWT from 'jsonwebtoken';
 import {User} from '../models';
-import FS from 'fs';
-import Path from 'path';
-import Config from '../config';
+import {JWT_SECRET, JWT_EXPIRATION_MINUTES} from '../config';
 import BaseRepository from './BaseRepository';
 
 
-export default class UserRepository extends BaseRepository  {
+export default class UserRepository extends BaseRepository {
     constructor() {
         super(User);
     }
-    /*async authenticate(data) {
-        let {username, password} = data;
+
+    authenticate = async (data) => {
+        const {email, password} = data;
         try {
-            let user = await User.findOne({
+            const user = await this.model.findOne({
                 where: {
-                    username: username,
-                    role: 'ADMIN',
+                    email: email,
                 },
             });
             if (!user) {
-                throw new Error('Not found user');
-            } else if (user.validatePassword(password)) {
-                const path = Path.resolve(__dirname, '..', 'config', 'cert', 'private.key')
-                const cert = FS.readFileSync(path);
+                throw new Error('Email not found');
+            } else if (await user.comparePassword(password)) {
                 const token = JWT.sign(
                     {
                         id: user.id,
                         role: user.role
                     },
-                    cert,
+                    JWT_SECRET,
                     {
-                        algorithm: 'RS256',
-                        expiresIn: Config.expireTime
+                        expiresIn: JWT_EXPIRATION_MINUTES
                     },
                 );
-                let userJson = user.toJSON();
-                userJson.token = token;
-                return userJson;
+                return token;
             } else {
-                throw new Error('Wrong password');
+                throw new Error('Password incorrect');
             }
         } catch (e) {
             throw new Error(e);
         }
-    }*/
+    }
 
 }

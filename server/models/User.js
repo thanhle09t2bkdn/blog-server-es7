@@ -56,20 +56,20 @@ module.exports = (Sequelize, DataTypes) => {
         });
     };
 
-    User.generateHash = async (password) => {
+    User.generateHash = (async function (password) {
         return await Bcrypt.hash(password, 8);
-    };
-    User.prototype.comparePassword = async (password) => {
+    });
+    User.prototype.comparePassword = async function (password) {
         return await Bcrypt.compare(password, this.dataValues.password);
     };
 
-    User.beforeCreate(async (user, options) => {
+    User.beforeCreate(async function (user, options) {
         if (user.changed('password')) {
             user.password = await User.generateHash(user.password);
         }
         return user;
     });
-    User.beforeUpdate(async (user, options) => {
+    User.beforeUpdate(async function (user, options) {
         if (user.changed('password')) {
             user.password = await User.generateHash(user.password);
         }
