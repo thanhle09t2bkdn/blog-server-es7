@@ -2,7 +2,8 @@ import HTTPStatus from 'http-status';
 import Response from '../../../helpers/Response';
 import {postRepository} from '../../../repositories';
 import {Category, User} from '../../../models';
-
+import FS from 'fs-extra';
+import Path from 'path';
 
 export default class PostController {
 
@@ -93,7 +94,13 @@ export default class PostController {
         try {
             const data = req.body;
             const {id, title, image, content, userId, categoryId} = data;
-
+            const post = await postRepository.findByPk(id);
+            try {
+                if (post.image !== image) {
+                    await FS.remove(Path.join(__rootDir, 'server', 'public', 'uploads', post.image));
+                }
+            } catch (e) {
+            }
             const result = await postRepository.update({
                     title,
                     image,

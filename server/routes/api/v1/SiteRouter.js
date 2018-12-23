@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import Validate from 'express-validation';
 import {siteController} from '../../../controllers/api/v1';
+import {auth} from '../../../middlewares';
 
 const router = Router();
 
-router.route('/upload').post(siteController.upload);
+router.route('/upload').post([auth.mustLogin], siteController.upload);
 
 export default router;
