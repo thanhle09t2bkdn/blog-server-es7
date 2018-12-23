@@ -22,12 +22,14 @@ module.exports = function(Sequelize, DataTypes) {
           references: {model: 'Users', key: 'id'},
           onUpdate: 'CASCADE',
           onDelete: 'SET NULL',
+          allowNull: false
       },
       categoryId: {
           type: DataTypes.UUID,
           references: {model: 'Categories', key: 'id'},
           onUpdate: 'CASCADE',
           onDelete: 'SET NULL',
+          allowNull: false
       },
       createdAt: {
           type: DataTypes.DATE,
