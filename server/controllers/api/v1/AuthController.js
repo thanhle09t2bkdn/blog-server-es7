@@ -1,6 +1,6 @@
 import Response from '../../../helpers/Response';
 import HTTPStatus from 'http-status';
-import {userRepository} from '../../../repositories'
+import {userRepository} from '../../../repositories';
 export default class AuthController {
     login = async (req, res) => {
         try {
