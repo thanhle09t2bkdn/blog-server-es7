@@ -43,7 +43,7 @@ module.exports = function(Sequelize, DataTypes) {
           type: DataTypes.DATE,
       }
   }, {});
-
+    Post.removeAttribute('deletedAt');
     Post.associate = (models) => {
         Post.belongsTo(models.Category, {
             as: 'category',

@@ -11,7 +11,7 @@ export default class PostController {
             const data = req.query;
             const {page, limit} = data;
             const options = {
-                attributes: {exclude: ['image', 'categoryId']},
+                attributes: {exclude: ['image', 'categoryId', 'userId']},
                 order: [
                     ['createdAt', 'DESC']
                 ],
@@ -19,12 +19,12 @@ export default class PostController {
                     {
                         model: Category,
                         as: 'category',
-                        attributes: {exclude: ['image', 'createdAt', 'updatedAt', 'deletedAt']}
+                        attributes: {exclude: ['image', 'createdAt', 'updatedAt']}
                     },
                     {
                         model: User,
                         as: 'user',
-                        attributes: {exclude: ['avatar', 'createdAt', 'updatedAt', 'deletedAt', 'password']}
+                        attributes: {exclude: ['avatar', 'createdAt', 'updatedAt']}
                     },
                 ],
                 page,
@@ -54,12 +54,12 @@ export default class PostController {
                     {
                         model: Category,
                         as: 'category',
-                        attributes: {exclude: ['image', 'createdAt', 'updatedAt', 'deletedAt']}
+                        attributes: {exclude: ['image', 'createdAt', 'updatedAt']}
                     },
                     {
                         model: User,
                         as: 'user',
-                        attributes: {exclude: ['avatar', 'createdAt', 'updatedAt', 'deletedAt', 'password']}
+                        attributes: {exclude: ['avatar', 'createdAt', 'updatedAt']}
                     },
                 ],
             });
