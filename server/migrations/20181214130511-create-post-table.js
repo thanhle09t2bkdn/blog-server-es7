@@ -24,12 +24,14 @@ module.exports = {
                 references: {model: 'Users', key: 'id'},
                 onUpdate: 'CASCADE',
                 onDelete: 'SET NULL',
+                allowNull: false
             },
             categoryId: {
                 type: Sequelize.UUID,
                 references: {model: 'Categories', key: 'id'},
                 onUpdate: 'CASCADE',
                 onDelete: 'SET NULL',
+                allowNull: false
             },
             createdAt: {
                 type: Sequelize.DATE,

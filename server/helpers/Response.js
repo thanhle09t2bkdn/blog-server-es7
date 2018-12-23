@@ -16,7 +16,6 @@ export default class Response {
                 .status(HTTPStatus.OK)
                 .json({
                     data: data,
-
                 });
         }
     }

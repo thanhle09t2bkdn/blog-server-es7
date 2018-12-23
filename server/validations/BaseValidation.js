@@ -9,7 +9,7 @@ export default class BaseValidation {
     };
 
     validateId = {
-        id: Joi.string().guid(Uuid.v4(), 'uuidV4')
+        id: Joi.string().guid(Uuid.v4(), 'uuidV4').required(),
     };
 
     index = {
