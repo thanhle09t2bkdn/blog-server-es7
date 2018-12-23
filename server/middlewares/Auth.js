@@ -10,12 +10,12 @@ export default class Auth {
         if (!token) {
             if (!next) {
                 throw new ApiError({
-                    message: 'AUTHORIZATION FAILED',
+                    message: 'Authorization failed',
                     status: HttpStatus.UNAUTHORIZED,
                 });
             }
             return next(new ApiError({
-                message: 'AUTHORIZATION FAILED',
+                message: 'Authorization failed',
                 status: HttpStatus.UNAUTHORIZED,
             }));
         }
@@ -54,7 +54,7 @@ export default class Auth {
     verifyUser = async (data) => {
         const user = await userRepository.findByPk(data.id);
         if (!user) {
-            throw new Error('USER NOT FOUND');
+            throw new Error('User not found');
         }
         return user;
     };
