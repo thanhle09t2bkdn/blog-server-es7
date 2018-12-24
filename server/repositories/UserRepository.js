@@ -13,6 +13,7 @@ export default class UserRepository extends BaseRepository {
         const {email, password} = data;
         try {
             const user = await this.model.findOne({
+                attributes: ['id', 'email', 'password', 'role'],
                 where: {
                     email: email,
                 },

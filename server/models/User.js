@@ -48,9 +48,12 @@ module.exports = (Sequelize, DataTypes) => {
         deletedAt: {
             type: DataTypes.DATE,
         }
-    }, {});
-    //User.removeAttribute('password');
-    User.removeAttribute('deletedAt');
+    }, {
+        defaultScope: {
+            attributes: {exclude: ['password', 'deletedAt']}
+        }
+    });
+
     User.associate = (models) => {
         User.hasMany(models.Post, {
             foreignKey: 'userId',

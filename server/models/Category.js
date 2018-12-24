@@ -25,8 +25,12 @@ module.exports = function (Sequelize, DataTypes) {
         deletedAt: {
             type: DataTypes.DATE,
         }
-    }, {});
-    Category.removeAttribute('deletedAt');
+    }, {
+        defaultScope: {
+            attributes: {exclude: ['deletedAt']}
+        }
+    });
+
     Category.associate = (models) => {
         Category.hasMany(models.Post, {
             foreignKey: 'categoryId',
