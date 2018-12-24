@@ -1,0 +1,155 @@
+/posts/index:
+  get:
+    summary: Get posts
+    tags:
+      - Post
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - in: header
+        name: 'x-access-token'
+        type: string
+        required: true
+      - in: query
+        name: page
+        type: number
+        required: true
+      - in: query
+        name: limit
+        type: number
+        required: true
+
+    responses:
+      '200':
+        description: OK
+      '400':
+        description: Validation error.
+
+
+/posts/view:
+  get:
+    summary: Get post
+    tags:
+      - Post
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - in: header
+        name: 'x-access-token'
+        type: string
+        required: true
+      - in: query
+        name: id
+        type: string
+        required: true
+
+    responses:
+      '200':
+        description: OK
+      '404':
+        description: Post not found
+      '400':
+        description: Validation error.
+
+/posts/create:
+  post:
+    summary: Create post
+    tags:
+      - Post
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - in: header
+        name: 'x-access-token'
+        type: string
+        required: true
+      - in: formData
+        name: title
+        type: string
+        required: true
+      - in: formData
+        name: image
+        type: string
+        required: true
+      - in: formData
+        name: content
+        type: string
+        required: true
+      - in: formData
+        name: categoryId
+        type: string
+        format: uuid
+        required: true
+      - in: formData
+        name: userId
+        type: string
+        format: uuid
+        required: true
+
+    responses:
+      '200':
+        description: OK
+      '404':
+        description: Post not found
+      '400':
+        description: Validation error.
+
+/posts/update:
+  put:
+    summary: Update post
+    tags:
+      - Post
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - in: header
+        name: 'x-access-token'
+        type: string
+        required: true
+      - in: formData
+        name: id
+        type: string
+        format: uuid
+        required: true
+      - in: formData
+        name: title
+        type: string
+        required: true
+      - in: formData
+        name: image
+        type: string
+        required: true
+      - in: formData
+        name: content
+        type: string
+        required: true
+      - in: formData
+        name: categoryId
+        type: string
+        format: uuid
+        required: true
+      - in: formData
+        name: userId
+        type: string
+        format: uuid
+        required: true
+
+    responses:
+      '200':
+        description: OK
+      '404':
+        description: Bad Request
+      '400':
+        description: Validation error.

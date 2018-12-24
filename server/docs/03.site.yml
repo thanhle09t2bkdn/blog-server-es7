@@ -1,0 +1,22 @@
+/site/upload:
+  post:
+    summary: Upload
+    tags:
+      - Site
+    consumes:
+      - multipart/form-data
+    parameters:
+      - in: header
+        name: 'x-access-token'
+        type: string
+        required: true
+      - in: formData
+        name: file
+        type: file
+        required: true
+
+    responses:
+      '200':
+        description: OK
+      '400':
+        description: Validation error.

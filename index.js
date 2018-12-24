@@ -10,7 +10,7 @@ import Compress from 'compression';
 import FileUpload from 'express-fileupload';
 const app = Express();
 app.use(FileUpload({
-    limits: {fileSize: 10 * 1024 * 1024},
+    limits: {fileSize: 50 * 1024},
 }));
 app.use(Cors());
 app.use(BodyParser.json());

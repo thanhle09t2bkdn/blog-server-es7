@@ -9,6 +9,9 @@ export default class UserController {
             const {id} = data;
 
             const user = await userRepository.findByPk(id);
+            if (!user) {
+                return Response.error(res, 'User not found', HTTPStatus.NOT_FOUND);
+            }
             return Response.success(res, user);
 
         } catch (e) {

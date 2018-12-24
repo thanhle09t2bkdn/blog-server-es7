@@ -4,8 +4,8 @@ import Uuid from 'uuid';
 export default class BaseValidation {
 
     pageInfo = {
-        page: Joi.number().min(1),
-        limit: Joi.number().min(1).max(100),
+        page: Joi.number().min(1).required(),
+        limit: Joi.number().min(1).max(1000).required(),
     };
 
     validateId = {

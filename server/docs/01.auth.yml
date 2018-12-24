@@ -1,0 +1,26 @@
+/auth/login:
+  post:
+    summary: Login
+    tags:
+      - Auth
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - in: formData
+        name: email
+        type: string
+        format: email
+        required: true
+      - in: formData
+        name: password
+        type: string
+        required: true
+
+    responses:
+      '200':
+        description: OK
+      '400':
+        description: Validation error.

@@ -1,0 +1,27 @@
+/users/view:
+  get:
+    summary: Get user
+    tags:
+      - User
+    produces:
+      - application/x-www-form-urlencoded
+      - application/json
+    consumes:
+      - application/x-www-form-urlencoded
+    parameters:
+      - in: header
+        name: 'x-access-token'
+        type: string
+        required: true
+      - in: query
+        name: id
+        type: string
+        required: true
+
+    responses:
+      '200':
+        description: OK
+      '404':
+        description: User not found
+      '400':
+        description: Validation error.
