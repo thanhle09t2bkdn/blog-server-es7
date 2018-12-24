@@ -49,7 +49,7 @@ module.exports = (Sequelize, DataTypes) => {
             type: DataTypes.DATE,
         }
     }, {});
-    User.removeAttribute('password');
+    //User.removeAttribute('password');
     User.removeAttribute('deletedAt');
     User.associate = (models) => {
         User.hasMany(models.Post, {
