@@ -3,7 +3,7 @@
     "APP_NAME": "Blog",
     "APP_VERSION": "1",
     "APP_DESCRIPTION": "",
-    "APP_HOST": "localhost:3000",
+    "APP_HOST": "localhost:3000/api",
     "SWAGGER_URL": "http://localhost:3000/swagger/swagger.json"
   },
 
@@ -11,7 +11,7 @@
     "APP_NAME": "Blog",
     "APP_VERSION": "1",
     "APP_DESCRIPTION": "",
-    "APP_HOST": "localhost:3000",
+    "APP_HOST": "localhost:3000/api",
     "SWAGGER_URL": "http://localhost:3000/swagger/swagger.json"
   },
 
@@ -19,14 +19,14 @@
     "APP_NAME": "Blog",
     "APP_VERSION": "1",
     "APP_DESCRIPTION": "",
-    "APP_HOST": "localhost:3000",
+    "APP_HOST": "localhost:3000/api",
     "SWAGGER_URL": "http://localhost:3000/swagger/swagger.json"
   },
   "test": {
     "APP_NAME": "Blog",
     "APP_VERSION": "1",
     "APP_DESCRIPTION": "",
-    "APP_HOST": "localhost:3000",
+    "APP_HOST": "localhost:3000/api",
     "SWAGGER_URL": "http://localhost:3000/swagger/swagger.json"
   }
 }
